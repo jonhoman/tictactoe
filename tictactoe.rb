@@ -1,5 +1,24 @@
-board = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+@winning_patterns = 
+[
+  /XXX....../,
+  /...XXX.../,
+  /......XXX/,
+  /X...X...X/,
+  /..X.X.X../,
+  /X..X..X../,
+  /.X..X..X./,
+  /..X..X..X/,
+  /OOO....../,
+  /...OOO.../,
+  /......OOO/,
+  /O...O...O/,
+  /..O.O.O../,
+  /O..O..O../,
+  /.O..O..O./,
+  /..O..O..O/
+]
 
+board = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
 def print_board(board)
   msg = board[0..2].join(" | ") + "\n" + 
@@ -10,6 +29,12 @@ end
 
 def valid_move?(board, choice)
   board.include?(choice.to_i)
+end
+
+def check_for_win(board, player)
+  @winning_patterns.each do |p|
+    puts "You won" if board.join().match(p)
+  end
 end
 
 print_board(board)
@@ -29,4 +54,5 @@ while (true) do
   else
     puts "Player #{player}, your choice was invalid. Please select again." 
   end
+  check_for_win(board, player)
 end
