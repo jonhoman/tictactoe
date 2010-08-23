@@ -1,58 +1,24 @@
-@winning_patterns = 
-[
-  /XXX....../,
-  /...XXX.../,
-  /......XXX/,
-  /X...X...X/,
-  /..X.X.X../,
-  /X..X..X../,
-  /.X..X..X./,
-  /..X..X..X/,
-  /OOO....../,
-  /...OOO.../,
-  /......OOO/,
-  /O...O...O/,
-  /..O.O.O../,
-  /O..O..O../,
-  /.O..O..O./,
-  /..O..O..O/
-]
+require 'board'
+@board = Board.new
+@game_won = false
 
-board = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-
-def print_board(board)
-  msg = board[0..2].join(" | ") + "\n" + 
-        board[3..5].join(" | ") + "\n" + 
-        board[6..8].join(" | ") + "\n"
-  puts msg
-end
-
-def valid_move?(board, choice)
-  board.include?(choice.to_i)
-end
-
-def check_for_win(board, player)
-  @winning_patterns.each do |p|
-    puts "You won" if board.join().match(p)
-  end
-end
-
-print_board(board)
+@board.print_board
 move_count = 0
 
-while (true) do  
+while (!@game_won) do  
   player = move_count % 2 == 0 ? "X" : "O"
   print "Player #{player} choose your move (1-9): "
   choice = gets.chomp
   
-  if valid_move?(board, choice)
+  if @board.valid_move?(choice)
     puts "Player #{player} chose #{choice}\n"
 
-    board[choice.to_i - 1] = player
-    print_board(board)
+    @board[choice.to_i - 1] = player
+    @board.clear_board
+    @board.print_board
     move_count += 1
   else
     puts "Player #{player}, your choice was invalid. Please select again." 
   end
-  check_for_win(board, player)
+  @game_won = @board.check_for_win(player)
 end
