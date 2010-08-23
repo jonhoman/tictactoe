@@ -32,7 +32,7 @@ class Board
     @board[index] = choice
   end
 
-  def print_board
+  def print
     msg = @board[0..2].join(" | ") + "\n" + 
           @board[3..5].join(" | ") + "\n" + 
           @board[6..8].join(" | ") + "\n"
@@ -54,7 +54,7 @@ class Board
     game_won
   end
 
-  def clear_board
+  def clear
     clear_code = %x{clear}
     print clear_code
   end

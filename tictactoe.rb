@@ -2,7 +2,7 @@ require 'board'
 @board = Board.new
 @game_won = false
 
-@board.print_board
+@board.print
 move_count = 0
 
 while (!@game_won) do  
@@ -14,8 +14,8 @@ while (!@game_won) do
     puts "Player #{player} chose #{choice}\n"
 
     @board[choice.to_i - 1] = player
-    @board.clear_board
-    @board.print_board
+    @board.clear
+    @board.print
     move_count += 1
   else
     puts "Player #{player}, your choice was invalid. Please select again." 
