@@ -14,7 +14,7 @@ while (!@game_won) do
     puts "Player #{player} chose #{choice}\n"
 
     @board[choice.to_i - 1] = player
-    @board.clear
+    #@board.clear
     @board.print
     move_count += 1
   else
