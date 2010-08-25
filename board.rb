@@ -59,4 +59,15 @@ class Board
     print clear_code
   end
 
+  def full?
+    !@board.join().match(/\d/)
+  end
+
+  def available_squares
+    temp_board = @board.dup
+    temp_board.delete("X")
+    temp_board.delete("O")
+    temp_board
+  end
+
 end

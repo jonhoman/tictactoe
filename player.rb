@@ -5,7 +5,7 @@ class Player
     @piece = piece
   end
   
-  def make_move
+  def make_move(board)
     print "Player #{piece} choose your move (1-9): "
     gets.chomp
   end
