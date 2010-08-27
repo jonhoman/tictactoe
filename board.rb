@@ -2,7 +2,7 @@ class Board
   attr_reader :board
   
   def initialize()
-    @winning_patterns = 
+    @won_patterns = 
     [
       /XXX....../,
       /...XXX.../,
@@ -31,6 +31,10 @@ class Board
   def []=(index, choice)
     @board[index] = choice
   end
+  
+  def join
+    @board.join()
+  end
 
   def print
     msg = @board[0..2].join(" | ") + "\n" + 
@@ -45,7 +49,7 @@ class Board
 
   def check_for_win(player)
     game_won = false
-    @winning_patterns.each do |p|
+    @won_patterns.each do |p|
       if @board.join().match(p) 
         puts "Player #{player}, you've won."
         game_won = true
